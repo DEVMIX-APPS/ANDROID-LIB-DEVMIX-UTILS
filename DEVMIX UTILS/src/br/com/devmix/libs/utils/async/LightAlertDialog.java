@@ -17,8 +17,10 @@ package br.com.devmix.libs.utils.async;
 
 import static android.os.Build.VERSION.SDK_INT;
 import static android.os.Build.VERSION_CODES.ICE_CREAM_SANDWICH;
+import android.annotation.TargetApi;
 import android.app.AlertDialog;
 import android.content.Context;
+import android.os.Build;
 
 /**
  * Alert dialog using the Holo Light theme
@@ -27,7 +29,7 @@ public class LightAlertDialog extends AlertDialog {
 
 	/**
 	 * Create alert dialog
-	 * 
+	 *
 	 * @param context
 	 * @return dialog
 	 */
@@ -49,11 +51,12 @@ public class LightAlertDialog extends AlertDialog {
 	/**
 	 * Alert dialog builder using the Holo Light theme
 	 */
+	@TargetApi(Build.VERSION_CODES.HONEYCOMB)
 	public static class Builder extends AlertDialog.Builder {
 
 		/**
 		 * Create alert dialog builder
-		 * 
+		 *
 		 * @param context
 		 * @return dialog builder
 		 */
