@@ -13,13 +13,14 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package br.com.devmix.libs.utils;
+package br.com.devmix.libs.utils.async;
 
 import static android.os.Build.VERSION.SDK_INT;
 import static android.os.Build.VERSION_CODES.ICE_CREAM_SANDWICH;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Context;
+import br.com.devmix.libs.utils.R;
 
 /**
  * Progress dialog in Holo Light theme

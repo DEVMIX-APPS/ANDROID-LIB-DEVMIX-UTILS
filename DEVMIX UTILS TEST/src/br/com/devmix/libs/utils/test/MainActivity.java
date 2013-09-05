@@ -4,8 +4,8 @@ import android.app.Activity;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.Menu;
-import br.com.devmix.libs.utils.AsyncUtils;
-import br.com.devmix.libs.utils.GenericAsyncTask;
+import br.com.devmix.libs.utils.async.AsyncUtils;
+import br.com.devmix.libs.utils.async.GenericAsyncTask;
 
 import com.googlecode.androidannotations.annotations.Bean;
 import com.googlecode.androidannotations.annotations.EActivity;

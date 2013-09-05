@@ -1,4 +1,4 @@
-package br.com.devmix.libs.utils;
+package br.com.devmix.libs.utils.async;
 
 import android.app.Activity;
 import android.app.ProgressDialog;
