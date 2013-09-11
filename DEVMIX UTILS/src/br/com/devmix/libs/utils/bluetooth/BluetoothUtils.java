@@ -151,10 +151,12 @@ public class BluetoothUtils {
     @TargetApi(Build.VERSION_CODES.GINGERBREAD_MR1)
 	public static boolean connectWriteBlocos(BluetoothDevice device,final List<String[]> nota) {
         BluetoothAdapter mBTAdapter = BluetoothAdapter.getDefaultAdapter();
+        Log.i("Bluetooth MAC: ", device.getAddress());
         BluetoothDevice mBTDevice = mBTAdapter.getRemoteDevice(device.getAddress());
         BluetoothSocket mBTSocket;
 		try {
-			mBTSocket = mBTDevice.createInsecureRfcommSocketToServiceRecord(UUID_RFCOMM_GENERIC);
+			mBTSocket = mBTDevice.createRfcommSocketToServiceRecord(UUID_RFCOMM_GENERIC);
+			//mBTSocket = mBTDevice.createInsecureRfcommSocketToServiceRecord(UUID_RFCOMM_GENERIC);
         	mBTSocket.connect();
         	final OutputStream mBTOutputStream = mBTSocket.getOutputStream();
 
