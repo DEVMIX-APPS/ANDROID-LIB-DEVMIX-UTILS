@@ -40,9 +40,11 @@ public class SimpleDialogFragment extends BaseDialogFragment {
 	protected static String ARG_NEGATIVE_BUTTON = "negative_button";
 
 	protected int mRequestCode;
+	public static SimpleDialogBuilder simpleDialogBuilder;
 
 	public static SimpleDialogBuilder createBuilder(Context context, FragmentManager fragmentManager,View customView) {
-		return new SimpleDialogBuilder(context, fragmentManager, SimpleDialogFragment.class,customView);
+		simpleDialogBuilder = new SimpleDialogBuilder(context, fragmentManager, SimpleDialogFragment.class,customView);
+		return simpleDialogBuilder;
 	}
 
 	@Override
@@ -66,8 +68,8 @@ public class SimpleDialogFragment extends BaseDialogFragment {
 	protected BaseDialogFragment.Builder build(BaseDialogFragment.Builder builder) {
 		buildTitle(builder);
 
-		if(getView() != null){
-			buildView(builder, getView());
+		if(simpleDialogBuilder.getCustomView() != null){
+			buildView(builder, simpleDialogBuilder.getCustomView());
 		}else{
 			buildMessage(builder);
 		}
@@ -194,7 +196,7 @@ public class SimpleDialogFragment extends BaseDialogFragment {
 
 		protected SimpleDialogBuilder(Context context, FragmentManager fragmentManager, Class<? extends SimpleDialogFragment> clazz,View customView) {
 			super(context, fragmentManager, clazz);
-			this.setCustomView(customView);
+			setCustomView(customView);
 		}
 
 		@Override
