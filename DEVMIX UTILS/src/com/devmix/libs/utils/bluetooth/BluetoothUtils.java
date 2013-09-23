@@ -43,6 +43,13 @@ public class BluetoothUtils {
             Log.i("Log", "Bluetooth is Enabled");
         }
     }
+	public static void requestPairing(BluetoothDevice device,Activity activity){
+		Intent intent = new Intent("android.bluetooth.device.action.PAIRING_REQUEST");
+	    intent.putExtra("android.bluetooth.device.extra.DEVICE", device);
+	    intent.putExtra("android.bluetooth.device.extra.PAIRING_VARIANT", 0);
+	    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+	    activity.startActivity(intent);
+	}
     public static void offBluetooth() {
     	BluetoothAdapter bluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
         if(bluetoothAdapter.isEnabled())
