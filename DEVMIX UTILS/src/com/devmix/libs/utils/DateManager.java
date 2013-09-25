@@ -3,65 +3,119 @@ package com.devmix.libs.utils;
 import java.sql.Date;
 import java.sql.Time;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 
 import android.annotation.SuppressLint;
-import android.net.ParseException;
-import android.util.Log;
+import android.content.ContentValues;
 
 public class DateManager {
-	
-	private static final String tag = "DateManager";
-	/*
-	 * @autor fernando
-	 * @param data data para converter, a data deve vir neste formato - 25012012
-	 * @param formato formato para qual se deseja converter a data Ex: dd/MM/yyyy
-	 * @return retorna data formatada no formato desejado
-	 */
-	@SuppressLint("SimpleDateFormat")
-	public static Date converteData(String data,String formato) {
-		
-        String dia = null, mes = null, ano = null;
-        java.sql.Date dataFormatada = null;
-        SimpleDateFormat format = new SimpleDateFormat(formato); 
-        dia = data.substring(0, 2);
-        mes = data.substring(2, 4);
-        ano = data.substring(4, 8); 
-        data = dia + "/" + mes + "/" + ano; 
-        try {
-            dataFormatada = new java.sql.Date(format.parse(data).getTime());
-            Log.i(tag, "Data formatada: "+dataFormatada);
-        } catch (ParseException e) {
-            Log.i(tag, "Exception ao converter data: "+e.getMessage());
-        } catch (java.text.ParseException e) {
-			Log.i(tag, "Exception ao converter data: "+e.getMessage());
-		} 
-        return dataFormatada;
-    } 
-	/*
-	 * @autor fernando
-	 * @param hora hora para converter
-	 * @param formato formato para qual se deseja converter a hora Ex: HH:mm:ss
-	 * @return retorna a hora no formato desejado
-	 */
-    @SuppressLint("SimpleDateFormat")
-	public static Time converteHora(String hora,String formato) {
-        String hh = null, min = null, seg = null;
-        java.sql.Time horaFormatada = null;
-        SimpleDateFormat format = new SimpleDateFormat(formato); 
 
-        hh = hora.substring(8, 10);
-        min = hora.substring(10, 12);
-        seg = hora.substring(12, 14);
-        hora = hh + ":" + min + ":" + seg; 
-        try {
-            horaFormatada = new java.sql.Time(format.parse(hora).getTime());
-            Log.i(tag, "Data formatada: "+horaFormatada);
-        } catch (ParseException e) {
-        	Log.i(tag, "Exception ao converter data: "+e.getMessage());
-        } catch (java.text.ParseException e) {
-        	Log.i(tag, "Exception ao converter data: "+e.getMessage());
-		} 
-        return horaFormatada;
+	 /**
+     * Formata uma data DD/MM/YYYY
+     *
+     * @param data Data para formatar
+     * @return Data formatada
+     */
+    public static String FormatarData(Date data)
+    {
+        ContentValues valores = new ContentValues();
+        ComponentesDaDataFmt(data, valores);
+        return String.format("%s/%s/%s", valores.getAsString("DD"), valores.getAsString("MM"), valores.getAsString("AA"));
+    }
+
+    /**
+     * Formata uma data DD/MM/YYYY HH:MM:SS
+     *
+     * @param data Data para formatar
+     * @return Data formatada
+     */
+    public static String FormatarDataHora(Date data)
+    {
+        ContentValues valores = new ContentValues();
+        ComponentesDaDataFmt(data, valores);
+        return String.format("%s/%s/%s %s:%s:%s", valores.getAsString("DD"), valores.getAsString("MM"), valores.getAsString("AA"),
+            valores.getAsString("HH"), valores.getAsString("MI"), valores.getAsString("SS"));
+    }
+
+    /**
+     * Formata uma data YYYY-MM-DD
+     *
+     * @param data Data para formatar
+     * @return Data formatada
+     */
+    public static String FormatarDataBanco(Date data)
+    {
+        ContentValues valores = new ContentValues();
+        ComponentesDaDataFmt(data, valores);
+        return String.format("%s-%s-%s", valores.getAsString("AA"), valores.getAsString("MM"), valores.getAsString("DD"));
+    }
+
+    /**
+     * Formata uma data YYYY-MM-DD HH:MM:SS
+     *
+     * @param data Data para formatar
+     * @return Data formatada
+     */
+    public static String FormatarDataHoraBanco(Date data)
+    {
+        ContentValues valores = new ContentValues();
+        ComponentesDaDataFmt(data, valores);
+        return String.format("%s-%s-%s %s:%s:%s", valores.getAsString("AA"), valores.getAsString("MM"), valores.getAsString("DD"),
+            valores.getAsString("HH"), valores.getAsString("MI"), valores.getAsString("SS"));
+    }
+
+    /**
+     * Formata uma data MM/DD/YYYY HH:MM:SS
+     *
+     * @param data Data para formatar
+     * @return Data formatada
+     */
+    public static String FormatarDataHoraAmericano(Date data)
+    {
+        ContentValues valores = new ContentValues();
+        ComponentesDaDataFmt(data, valores);
+        return String.format("%s/%s/%s %s:%s:%s", valores.getAsString("MM"), valores.getAsString("DD"), valores.getAsString("AA"),
+            valores.getAsString("HH"), valores.getAsString("MI"), valores.getAsString("SS"));
+    }
+
+    /**
+     * Formata data e hora DD/MM/YYYY HH:MM
+     *
+     * @param data Data e Hora para formatar
+     * @return Data e Hora formatada
+     */
+    public static String FormatarDataHoraHHMM(Date data)
+    {
+        ContentValues valores = new ContentValues();
+        ComponentesDaDataFmt(data, valores);
+        return String.format("%s/%s/%s %s:%s", valores.getAsString("DD"), valores.getAsString("MM"), valores.getAsString("AA"),
+            valores.getAsString("HH"), valores.getAsString("MI"));
+    }
+
+    /**
+     * Formata hora HH:MM
+     *
+     * @param hora Hora para formatar
+     * @return Hora formatada
+     */
+    public static String FormatarHoraHHMM(Date hora)
+    {
+        ContentValues valores = new ContentValues();
+        ComponentesDaDataFmt(hora, valores);
+        return String.format("%s:%s", valores.getAsString("HH"), valores.getAsString("MI"));
+    }
+
+    /**
+     * Formata hora HH:MM:SS
+     *
+     * @param hora Hora para formatar
+     * @return Hora formatada
+     */
+    public static String FormatarHoraBanco(Date hora)
+    {
+        ContentValues valores = new ContentValues();
+        ComponentesDaDataFmt(hora, valores);
+        return String.format("%s:%s:%s", valores.getAsString("HH"), valores.getAsString("MI"), valores.getAsString("SS"));
     }
     /*
      * @autor echer
@@ -74,10 +128,29 @@ public class DateManager {
      * @autor echer
      * @param formato formato no qual se deseja formatar a data atual Ex:dd/MM/yyyy
      * @return retorna data atual no formato desejado
-     * 
+     *
      */
     @SuppressLint("SimpleDateFormat")
 	public static String getDateAtual(String formato){
     	return new SimpleDateFormat(formato).format(new Date(System.currentTimeMillis()));
+    }
+    /**
+     * Obtém os componentes da data em formato numérico
+     *
+     * @param data    Data
+     * @param valores Componentes da data
+     */
+    public static void ComponentesDaDataFmt(Date data, ContentValues valores)
+    {
+        Calendar cal = Calendar.getInstance();
+        cal.setTime(data);
+
+        valores.put("AA", String.format("%04d", cal.get(Calendar.YEAR)));
+        valores.put("MM", String.format("%02d", cal.get(Calendar.MONTH) + 1));
+        valores.put("DD", String.format("%02d", cal.get(Calendar.DAY_OF_MONTH)));
+        valores.put("HH", String.format("%02d", cal.get(Calendar.HOUR_OF_DAY)));
+        valores.put("MI", String.format("%02d", cal.get(Calendar.MINUTE)));
+        valores.put("SS", String.format("%02d", cal.get(Calendar.SECOND)));
+        valores.put("MS", String.format("%02d", cal.get(Calendar.MILLISECOND)));
     }
 }
