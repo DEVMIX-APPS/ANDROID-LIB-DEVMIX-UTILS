@@ -190,6 +190,25 @@ public class FileManager {
 	    		return false;
 	    	}
 	}
+	public static boolean copy(InputStream inStream,String destino){
+		OutputStream outStream = null;
+	    	try{
+	    	    File dst =new File(destino);
+	    	    outStream = new FileOutputStream(dst);
+	    	    byte[] buffer = new byte[1024];
+	    	    int length;
+	    	    while ((length = inStream.read(buffer)) > 0){
+	    	    	outStream.write(buffer, 0, length);
+	    	    }
+	    	    inStream.close();
+	    	    outStream.close();
+	    	    Log.i(tag, "Copia realizada com sucesso");
+	    	    return true;
+	    	}catch(IOException e){
+	    		Log.i(tag, "Erro ao copiar: "+e.getMessage());
+	    		return false;
+	    	}
+	}
 	/**
 	 * @autor echer
      * L� os dados do arquivo texto
