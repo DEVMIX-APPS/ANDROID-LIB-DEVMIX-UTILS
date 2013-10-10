@@ -1,5 +1,7 @@
 package com.devmix.libs.utils.dao;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.List;
 
 /**
@@ -25,6 +27,13 @@ public interface DataBaseActionsThrows{
     
     @SuppressWarnings("rawtypes")
 	public List list()throws Exception;
+    
+    @SuppressWarnings("rawtypes")
+	public List iteraDadosLista(ResultSet rs) throws SQLException;
+    
+    public Object iteraDadosObject(ResultSet rs) throws SQLException;
+    
+    public Object carregaDados(ResultSet rs) throws SQLException;
 
 
 }
