@@ -40,6 +40,7 @@ public class JAXBUtils {
 					request.addProperty(pi);
 				}
 			}
+			
 			SoapSerializationEnvelope envelope = new SoapSerializationEnvelope(
 					SoapEnvelope.VER11);
 			if (dataType.equals(DATA_BYTE)) {
@@ -47,11 +48,12 @@ public class JAXBUtils {
 				envelope.encodingStyle = SoapEnvelope.ENC;
 			}
 			envelope.setOutputSoapObject(request);
+			
 			HttpTransportSE androidHttpTransport = new HttpTransportSE(_url);
+
 			Log.i("soap:", envelope.bodyOut + "");
-			androidHttpTransport.call(
-					String.format("\"%s%s\"", NAMESPACE, nomeDoMetodo),
-					envelope);
+			
+			androidHttpTransport.call(String.format("\"%s%s\"", NAMESPACE, nomeDoMetodo),envelope);
 
 			return envelope;
 		} catch (Exception ex) {

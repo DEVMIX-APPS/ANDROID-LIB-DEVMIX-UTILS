@@ -12,6 +12,7 @@ import java.io.OutputStream;
 import java.lang.reflect.Array;
 import java.lang.reflect.Field;
 
+import android.os.Environment;
 import android.util.Log;
 
 public class FileManager {
@@ -37,6 +38,47 @@ public class FileManager {
 			}
 		}
 		return sb.toString();
+	}
+	
+	/* Checks if external storage is available for read and write */
+	public static boolean isExternalStorageWritable() {
+	    String state = Environment.getExternalStorageState();
+	    if (Environment.MEDIA_MOUNTED.equals(state)) {
+	    	Log.i(tag, "Mídia Montada");
+	        return true;
+	    }
+	    Log.i(tag, "Mídia não montada");
+	    return false;
+	}
+	
+	public static boolean writeFile(byte[] bytes,String pathToFile){
+		if(isExternalStorageReadable() && isExternalStorageWritable()){
+			try {
+	            File myFile = new File(pathToFile);
+	            myFile.createNewFile();
+	            FileOutputStream fOut = new FileOutputStream(myFile);
+	            fOut.write(bytes,0,bytes.length);
+	            fOut.close();
+	            Log.i(tag, "Arquivo gravado");
+	            return true;
+	        } catch (Exception e) {
+	            e.printStackTrace();
+	            Log.i(tag, "Erro a gravar arquivo");
+	            return false;
+	        }
+		}else{
+        	return false;
+        }
+	}
+
+	/* Checks if external storage is available to at least read */
+	public static boolean isExternalStorageReadable() {
+	    String state = Environment.getExternalStorageState();
+	    if (Environment.MEDIA_MOUNTED.equals(state) ||
+	        Environment.MEDIA_MOUNTED_READ_ONLY.equals(state)) {
+	        return true;
+	    }
+	    return false;
 	}
 	/**
 	 * @autor echer
