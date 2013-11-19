@@ -10,17 +10,14 @@ import android.util.Log;
 public class Conexao extends BroadcastReceiver
 {
 	private String tag = "Conexao";
-	private ConnectivityManager cManager;
-	public Conexao(Context context){
-		cManager = (ConnectivityManager)context.getSystemService(Context.CONNECTIVITY_SERVICE);
-	}
 	/**
 	 * @autor echer
 	 * verifica atividade da network se esta conectado
 	 * @return true para conectado false para desconectado
 	 */
-	public boolean conectadoOuConectando(){
+	public static boolean conectadoOuConectando(Context context){
 		try{
+			ConnectivityManager cManager = (ConnectivityManager)context.getSystemService(Context.CONNECTIVITY_SERVICE);
 			return cManager.getActiveNetworkInfo().isConnectedOrConnecting();
 		}catch(Exception e){
 			return false;
