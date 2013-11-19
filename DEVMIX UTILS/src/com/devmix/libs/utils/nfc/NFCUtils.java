@@ -17,7 +17,8 @@ import android.nfc.tech.Ndef;
 import android.nfc.tech.NdefFormatable;
 import android.os.Build;
 import android.widget.Toast;
-import br.com.devmix.libs.utils.R;
+
+import com.devmix.libs.utils.R;
 
 /**
  * <uses-permission android:name="android.permission.NFC" />

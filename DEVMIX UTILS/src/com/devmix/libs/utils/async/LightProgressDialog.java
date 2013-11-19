@@ -20,7 +20,8 @@ import static android.os.Build.VERSION_CODES.ICE_CREAM_SANDWICH;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Context;
-import br.com.devmix.libs.utils.R;
+
+import com.devmix.libs.utils.R;
 
 /**
  * Progress dialog in Holo Light theme

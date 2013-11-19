@@ -1,4 +1,4 @@
-package inmite.android.styled.dialogs;
+package com.devmix.libs.utils;
 
 import android.app.Activity;
 import android.app.AlertDialog;

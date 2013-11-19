@@ -37,7 +37,8 @@ import android.widget.LinearLayout;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
-import br.com.devmix.libs.utils.R;
+
+import com.devmix.libs.utils.R;
 
 /**
  * Base dialog fragment for all your dialogs, stylable and same design on Android 2.2+.

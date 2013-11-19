@@ -13,10 +13,10 @@ import com.googlecode.androidannotations.annotations.sharedpreferences.Pref;
  *
  */
 public class AtalhoManager {
-	/**
+	/** 
 	 * SHARED PREFERENCES
 	 */
-	@Pref
+	@Pref 
 	public AtalhoPreferences_ prefAtalho;
 	public void adicionaAtalho(Activity activity,int iconImageDrawable,String iconName,String packageIntent,String intentName,String nomeAtalho) {
 
