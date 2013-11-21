@@ -58,7 +58,8 @@ public class GPS implements LocationListener{
 	 * @param context contexto utilizado para ativa��o do GPS
 	 */
 	public static void turnGPSOnOff(Context context){
-		  String provider = Settings.Secure.getString(context.getContentResolver(), Settings.Secure.LOCATION_PROVIDERS_ALLOWED);
+		  @SuppressWarnings("deprecation")
+		String provider = Settings.Secure.getString(context.getContentResolver(), Settings.Secure.LOCATION_PROVIDERS_ALLOWED);
 		  if(!provider.contains("gps")){
 		    final Intent poke = new Intent();
 		    poke.setClassName("com.android.settings", "com.android.settings.widget.SettingsAppWidgetProvider");
