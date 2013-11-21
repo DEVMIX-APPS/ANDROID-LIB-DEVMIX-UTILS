@@ -9,7 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.TextView;
 
-import com.devmix.libs.utils.R;
+import com.orasystems.libs.utils.R;
 
 /**
  * Simple progress dialog that shows indeterminate progress bar together with message and dialog title (optional).<br/>

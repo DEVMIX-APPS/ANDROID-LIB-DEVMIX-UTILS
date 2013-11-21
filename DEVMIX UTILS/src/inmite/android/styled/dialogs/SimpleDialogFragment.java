@@ -24,7 +24,7 @@ import android.support.v4.app.FragmentManager;
 import android.text.TextUtils;
 import android.view.View;
 
-import com.devmix.libs.utils.R;
+import com.orasystems.libs.utils.R;
 
 /**
  * Dialog for displaying simple message, message with title or message with title and two buttons. Implement {@link
