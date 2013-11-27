@@ -10,4 +10,5 @@ public interface GenericAsyncTask {
 	public void hideProgressBar();
 	public ProgressDialog getProgressDialog();
 	public void showProgressBar(Activity activity,String title,String message,int max,Drawable icon,boolean setCancelable,boolean setIndeterminate,boolean progressHorizontal);
+	public void atualizaProgressDialog(GenericAsyncTask asyncTask,String message,int progress);
 }

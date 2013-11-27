@@ -39,6 +39,13 @@ public class AsyncUtils implements GenericAsyncTask{
 	public ProgressDialog getProgressDialog(){
 		return progressDialog;
 	}
+	
+	@UiThread
+	@Override
+	public void atualizaProgressDialog(GenericAsyncTask asyncTask,String message,int progress){
+		if(message != null)asyncTask.getProgressDialog().setMessage(message);
+		if(progress > 0)asyncTask.getProgressDialog().setProgress(progress);
+	}
 
 
 }

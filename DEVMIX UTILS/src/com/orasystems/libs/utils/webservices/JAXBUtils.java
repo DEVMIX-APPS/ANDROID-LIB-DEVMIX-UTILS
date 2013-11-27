@@ -13,8 +13,12 @@ import android.content.ContentValues;
 import android.util.Log;
 
 import com.thoughtworks.xstream.XStream;
+import com.thoughtworks.xstream.io.HierarchicalStreamDriver;
 import com.thoughtworks.xstream.io.xml.DomDriver;
+import com.thoughtworks.xstream.io.xml.StaxDriver;
+import com.thoughtworks.xstream.io.xml.WstxDriver;
 import com.thoughtworks.xstream.io.xml.XmlFriendlyReplacer;
+import com.thoughtworks.xstream.io.xml.XppDomDriver;
 import com.thoughtworks.xstream.mapper.MapperWrapper;
 
 @SuppressWarnings("deprecation")
@@ -27,7 +31,7 @@ public class JAXBUtils {
 
 	public static SoapSerializationEnvelope ExecutarMetodo(String nomeDoMetodo,
 			ContentValues parametros, String dataType, String NAMESPACE,
-			String _url) {
+			String _url) throws Exception{
 		try {
 			SoapObject request = new SoapObject(NAMESPACE, nomeDoMetodo);
 			if (parametros != null) {
@@ -64,17 +68,31 @@ public class JAXBUtils {
 			return envelope;
 		} catch (Exception ex) {
 			ex.printStackTrace();
-			return null;
+			throw ex;
 		}
 	}
 
-	public static XStream getXStream(boolean ignoreInconsistentElements) {
+	public static XStream getXStreamDomDriver(boolean ignoreInconsistentElements) {
+		return getXStream(new DomDriver("UTF-8",new XmlFriendlyReplacer("__", "_")),ignoreInconsistentElements);
+	}
+	
+	public static XStream getXStreamStaxDriver(boolean ignoreInconsistentElements) {
+		return getXStream(new StaxDriver(new XmlFriendlyReplacer("__", "_")),ignoreInconsistentElements);
+	}
+	
+	public static XStream getXStreamWSTXDriver(boolean ignoreInconsistentElements) {
+		return getXStream(new WstxDriver(new XmlFriendlyReplacer("__", "_")),ignoreInconsistentElements);
+	}
+	
+	public static XStream getXStreamXPP3Driver(boolean ignoreInconsistentElements) {
+		return getXStream(new XppDomDriver(new XmlFriendlyReplacer("__", "_")),ignoreInconsistentElements);
+	}
+
+	private static XStream getXStream(HierarchicalStreamDriver driver,boolean ignoreInconsistentElements) {
 		if (!ignoreInconsistentElements) {
-			return new XStream(new DomDriver("UTF-8",new XmlFriendlyReplacer("__", "_")));
-			//return new XStream(new DomDriver("UTF-8"));
+			return new XStream(driver);
 		} else {
-			//return new XStream(new DomDriver("UTF-8")) {
-			return new XStream(new DomDriver("UTF-8",new XmlFriendlyReplacer("__", "_"))) {
+			return new XStream(driver) {
 				@Override
 				protected MapperWrapper wrapMapper(MapperWrapper next) {
 					return new MapperWrapper(next) {

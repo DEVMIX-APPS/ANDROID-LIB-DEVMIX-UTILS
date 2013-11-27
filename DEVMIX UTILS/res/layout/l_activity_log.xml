@@ -1,0 +1,109 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:weightSum="1" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_margin="5dp"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:weightSum="1" >
+
+            <Spinner
+                android:id="@+id/spTipo"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:layout_weight="0.5"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:background="@drawable/rounded_button_green_light"
+                android:textColor="@color/White" />
+
+            <Spinner
+                android:id="@+id/spMetodo"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:layout_weight="0.5"
+                android:background="@drawable/rounded_button_green_light"
+                android:textColor="@color/White" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_margin="5dp"
+            android:gravity="center"
+            android:orientation="horizontal" >
+
+            <Button
+                android:id="@+id/btnDtInicial"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:background="@drawable/rounded_button_green_light"
+                android:ems="10"
+                android:gravity="center"
+                android:inputType="date"
+                android:padding="5dp"
+                android:text="10/07/2013"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textColor="@color/White" >
+            </Button>
+
+            <TextView
+                android:id="@+id/textView2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:text="Até"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textColor="@color/Black" />
+
+            <Button
+                android:id="@+id/btnDtFinal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:background="@drawable/rounded_button_green_light"
+                android:ems="10"
+                android:gravity="center"
+                android:inputType="date"
+                android:padding="5dp"
+                android:text="17/07/2013"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textColor="@color/White" >
+            </Button>
+
+            <Button
+                android:id="@+id/btnSearch"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:background="#00000000"
+                android:drawableLeft="@drawable/pesquisar" />
+        </LinearLayout>
+    </LinearLayout>
+
+
+        <com.fima.cardsui.views.CardUI
+            android:id="@+id/logsView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+</LinearLayout>

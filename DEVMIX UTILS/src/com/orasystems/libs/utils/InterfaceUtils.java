@@ -25,4 +25,9 @@ public class InterfaceUtils {
 	public void exibeMsg(String msg){
 		DialogUtils.exibeMsg(msg, activity);
 	}
+	
+	@UiThread
+	public void exibeMsgFinish(String msg,boolean finish){
+		DialogUtils.exibeMsgFinish(msg, activity,finish);
+	}
 }

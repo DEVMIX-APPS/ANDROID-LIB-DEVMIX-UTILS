@@ -3,9 +3,10 @@ package com.orasystems.libs.utils.xstream;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.GregorianCalendar;
 
-import com.thoughtworks.xstream.converters.ConversionException;
+import android.annotation.SuppressLint;
+import android.util.Log;
+
 import com.thoughtworks.xstream.converters.Converter;
 import com.thoughtworks.xstream.converters.MarshallingContext;
 import com.thoughtworks.xstream.converters.UnmarshallingContext;
@@ -17,6 +18,7 @@ public class DateConverter implements Converter {
 			"MMMM dd, yyyy HH:mm:ss");
 
 
+	@SuppressLint("SimpleDateFormat")
 	public DateConverter(String format){
 		formatter = new SimpleDateFormat(format);
 	}
@@ -33,12 +35,12 @@ public class DateConverter implements Converter {
 
 	public Object unmarshal(HierarchicalStreamReader reader,
 			UnmarshallingContext context) {
-		GregorianCalendar calendar = new GregorianCalendar();
+		Date data = null;
 		try {
-			calendar.setTime(formatter.parse(reader.getValue()));
+			data = new Date(formatter.parse(reader.getValue()).getTime());
 		} catch (ParseException e) {
-			throw new ConversionException(e.getMessage(), e);
-		}
-		return calendar;
+			e.printStackTrace();
+		}  
+		return data;
 	}
 }
