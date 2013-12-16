@@ -28,10 +28,12 @@ public class LogUtils {
 		return this;
 	}
 
-	public void writeLogInfo(String tag,String metodo,String string) {
+	public void writeLogInfo(String tag,String metodo,String string,String message) {
 		Log.i(tag, string);
 		LogDB l = new LogDB();
-		l.setLog(string);
+		//l.setLog(string);
+		l.setLog("");
+		l.setMessage(message);
 		l.setTipo(LogDB.TIPO_INFO);
 		l.setData(new Date(System.currentTimeMillis()));
 		l.setMetodo(metodo);
@@ -43,11 +45,13 @@ public class LogUtils {
 		
 	}
 	
-	public void writeLogError(String tag,String metodo,String string) {
+	public void writeLogError(String tag,String metodo,String string,String message) {
 		Log.e(tag, string);
 		LogDB l = new LogDB();
-		l.setLog(string);
+		//l.setLog(string);
+		l.setLog("");
 		l.setTipo(LogDB.TIPO_ERROR);
+		l.setMessage(message);
 		l.setData(new Date(System.currentTimeMillis()));
 		l.setMetodo(metodo);
 		try {
@@ -57,11 +61,13 @@ public class LogUtils {
 		}
 	}
 
-	public void writeLogWarn(String tag,String metodo,String string) {
+	public void writeLogWarn(String tag,String metodo,String string,String message) {
 		Log.w(tag, string);
 		LogDB l = new LogDB();
-		l.setLog(string);
+		//l.setLog(string);
+		l.setLog("");
 		l.setTipo(LogDB.TIPO_WARN);
+		l.setMessage(message);
 		l.setData(new Date(System.currentTimeMillis()));
 		l.setMetodo(metodo);
 		try {

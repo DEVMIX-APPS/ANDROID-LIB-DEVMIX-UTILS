@@ -25,6 +25,10 @@ public class LogDB {
     @DatabaseField(columnName = COLUMN_TIPO,useGetSet = true,canBeNull=false,defaultValue="")
     private String tipo;
     
+    public static final String COLUMN_MESSAGE = "LOG_MESSAGE";
+    @DatabaseField(columnName = COLUMN_MESSAGE,useGetSet = true,canBeNull=false,defaultValue="")
+    private String message;
+    
     public static final String COLUMN_METODO = "LOG_METODO";
     @DatabaseField(columnName = COLUMN_METODO,useGetSet = true,canBeNull=false,defaultValue="")
     private String metodo;
@@ -62,5 +66,11 @@ public class LogDB {
 	}
 	public void setMetodo(String metodo) {
 		this.metodo = metodo;
+	}
+	public String getMessage() {
+		return message;
+	}
+	public void setMessage(String message) {
+		this.message = message;
 	}
 }

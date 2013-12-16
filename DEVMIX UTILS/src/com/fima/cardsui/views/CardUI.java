@@ -300,11 +300,11 @@ public class CardUI extends FrameLayout {
 	}
 	
 	public void reset(){
-		mStacks = null;
-		mAdapter = new StackAdapter(mContext, mStacks, mSwipeable);
-		mListView.setAdapter(mAdapter);
+		mStacks = new ArrayList<AbstractCard>();
+		refresh();
 	}
 	//suppress this error message to be able to use spaces in higher api levels
+	@SuppressLint("NewApi")
 	public void refresh() {
 
 		if (mAdapter == null) {

@@ -67,6 +67,11 @@ public class ActivityLog extends FragmentActivity {
 
 	public ArrayList<String> spMetodoValues;
 	
+	@Override
+	public void onBackPressed(){
+		finish();
+	}
+	
 	@AfterViews
 	public void afterViews() {
 
@@ -216,6 +221,15 @@ public class ActivityLog extends FragmentActivity {
 		String data = String.format("%d/%d/%d", day, month + 1, year);
 		btnDtFinal.setText(data);
 	}
+	
+	@Click
+	public void btnExcluir(View v){
+		try {
+			log.logManager.deleteAll();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
 
 	@SuppressWarnings("deprecation")
 	@Click
@@ -260,7 +274,7 @@ public class ActivityLog extends FragmentActivity {
 			
 			for (Object l : log.logManager.list(new Date(cInicial.getTimeInMillis()),new Date(cFinal.getTimeInMillis()), tipo,metodo)) {
 				LogDB logDB = (LogDB) l;
-				MyCard card = new MyCard(logDB.getMetodo() + " - "+ logDB.getData().toLocaleString(), logDB.getLog());
+				MyCard card = new MyCard(logDB.getMetodo() + " - "+ logDB.getData().toLocaleString(),logDB.getMessage()+"\n\n"+ logDB.getLog());
 				stack.add(card);
 			}
 		} catch (Exception e) {

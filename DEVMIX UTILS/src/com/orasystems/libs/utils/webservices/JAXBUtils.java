@@ -1,5 +1,6 @@
 package com.orasystems.libs.utils.webservices;
 
+import java.io.IOException;
 import java.util.Map;
 
 import org.ksoap2.SoapEnvelope;
@@ -8,6 +9,7 @@ import org.ksoap2.serialization.PropertyInfo;
 import org.ksoap2.serialization.SoapObject;
 import org.ksoap2.serialization.SoapSerializationEnvelope;
 import org.ksoap2.transport.HttpTransportSE;
+import org.xmlpull.v1.XmlPullParserException;
 
 import android.content.ContentValues;
 import android.util.Log;
@@ -66,9 +68,10 @@ public class JAXBUtils {
 			androidHttpTransport.call(String.format("\"%s%s\"", NAMESPACE, nomeDoMetodo),envelope);
 
 			return envelope;
-		} catch (Exception ex) {
-			ex.printStackTrace();
-			throw ex;
+		} catch (IOException ex) {
+			throw new Exception(ex);
+		}catch (XmlPullParserException e) {
+			throw new Exception(e);
 		}
 	}
 

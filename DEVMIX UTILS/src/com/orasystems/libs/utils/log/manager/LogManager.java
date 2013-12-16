@@ -7,7 +7,6 @@ import java.util.Date;
 import java.util.List;
 
 import android.app.Activity;
-import android.util.Log;
 
 import com.googlecode.androidannotations.annotations.EBean;
 import com.googlecode.androidannotations.annotations.RootContext;
@@ -94,7 +93,7 @@ public class LogManager implements DataBaseActionsThrows {
 		}else{
 			logDBQuery.where().between(LogDB.COLUMN_DATA, dataInicial, dataFinal);
 		}
-		Log.i("", logDBQuery.prepareStatementInfo().getStatement());
+		//Log.i("", logDBQuery.prepareStatementInfo().getStatement());
 		return getDaoLog().query(logDBQuery.prepare());
 	}
 	
@@ -137,5 +136,9 @@ public class LogManager implements DataBaseActionsThrows {
 	public Object carregaDados(ResultSet rs) throws SQLException {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	public void deleteAll() throws Exception {
+		getDaoLog().deleteBuilder().delete();
 	}
 }
